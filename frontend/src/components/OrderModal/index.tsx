@@ -2,6 +2,7 @@ import { Overlay, Actions, ModalBody, OrderDetails} from './styles';
 import closeIcon from '../../assets/images/close-icon.svg';
 import { Order } from '../../types/Order';
 import { formatCurrency } from '../../utils/formatCurrency';
+import { useEffect } from 'react';
 
 interface OrderModelProps {
   visible: boolean;
@@ -14,6 +15,14 @@ interface OrderModelProps {
 
 const OrderModal = ({visible, order, onClose, onCancelOrder, isLoading, onChangeOrderStatus,}: OrderModelProps) => {
   if (!visible || !order) return null;
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') onClose();
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [onClose]);
 
   const total = order.products.reduce((acc, { product, quantity }) => {
     return acc + product.price * quantity;
