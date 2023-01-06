@@ -1,4 +1,5 @@
 import Header from './components/Header';
+import Orders from './components/Orders';
 import { GlobalStyles } from './styles/GlobalStyles';
 
 const App = () => {
@@ -6,6 +7,7 @@ const App = () => {
     <>
       <GlobalStyles />
       < Header />
+      < Orders/>
     </>
   );
 };

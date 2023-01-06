@@ -1,6 +1,8 @@
+import { Container } from './styles';
+
 const Orders = () => {
   return (
-    <div>Orders</div>
+    <Container>Orders</Container>
   );
 };
 
