@@ -1,3 +1,5 @@
+import {Board, OrdersContainer} from './styles';
+
 const OrdersBoard = () => {
   return (
     <Board>
