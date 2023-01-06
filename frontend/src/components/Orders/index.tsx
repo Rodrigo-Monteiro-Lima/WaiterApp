@@ -7,7 +7,7 @@ const Orders = () => {
       <OrdersBoard
         icon="🕑"
         title="Fila de espera"
-        orders={[]}
+        orders={[{table: '1', status: 'WAITING', _id: '123', products: []}]}
       />
       <OrdersBoard
         icon="👨‍🍳"
