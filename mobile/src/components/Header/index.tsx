@@ -14,7 +14,7 @@ const Header = () => {
           <Text size={24}>APP</Text>
         </Text>
       </>
-      <Content>
+      {/* <Content>
         <OrderHeader>
           <Text size={24} weight="600">
             Pedido
@@ -28,7 +28,7 @@ const Header = () => {
         <Table>
           <Text color="#666">Mesa 1</Text>
         </Table>
-      </Content>
+      </Content> */}
     </Container>
   );
 };
