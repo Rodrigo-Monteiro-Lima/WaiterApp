@@ -1,4 +1,5 @@
 import { useFonts } from 'expo-font';
+import { StatusBar } from 'expo-status-bar';
 import Main from './src/Main';
 
 export default function App() {
@@ -11,6 +12,7 @@ export default function App() {
   if (!isFontLoaded) return null;
   return (
     <>
+      <StatusBar style="dark" />
       <Main />
     </>
   );
