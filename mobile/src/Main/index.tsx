@@ -1,3 +1,4 @@
+import Categories from '../components/Categories';
 import Header from '../components/Header';
 import {
   Container,
@@ -10,12 +11,18 @@ import {
 
 const Main = () => {
   return (
-    <Container>
-      < Header/>
-      <CategoriesContainer></CategoriesContainer>
-      <MenuContainer></MenuContainer>
-      <Footer></Footer>
-    </Container>
+    <>
+      <Container>
+        < Header/>
+        <CategoriesContainer>
+          <Categories />
+        </CategoriesContainer>
+        <MenuContainer></MenuContainer>
+      </Container>
+      <Footer>
+        <FooterContainer></FooterContainer>
+      </Footer>
+    </>
   );
 };
 
