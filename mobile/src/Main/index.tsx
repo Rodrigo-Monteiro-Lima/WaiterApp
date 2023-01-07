@@ -1,5 +1,4 @@
-import { View } from 'react-native';
-import { Text } from '../components/Text';
+import Header from '../components/Header';
 import {
   Container,
   CategoriesContainer,
@@ -12,7 +11,10 @@ import {
 const Main = () => {
   return (
     <Container>
-      <Text color='red'>Main</Text>
+      < Header/>
+      <CategoriesContainer></CategoriesContainer>
+      <MenuContainer></MenuContainer>
+      <Footer></Footer>
     </Container>
   );
 };
