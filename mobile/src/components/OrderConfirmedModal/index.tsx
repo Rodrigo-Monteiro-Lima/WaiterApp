@@ -6,12 +6,32 @@ import { Container, OkButton } from './styles';
 
 interface OrderConfirmedModalProps {
   visible: boolean;
+  onOk: () => void;
 }
 
-const OrderConfirmedModal = ({ visible }: OrderConfirmedModalProps) => {
+const OrderConfirmedModal = ({ visible, onOk }: OrderConfirmedModalProps) => {
   return (
     <Modal visible={visible} animationType="fade">
-
+      <StatusBar style="light" />
+      <Container>
+        <CheckCircle />
+        <Text
+          size={20}
+          weight="600"
+          color="#fff"
+          style={{ marginTop: 15, marginBottom: 4 }}
+        >
+          Pedido confirmado
+        </Text>
+        <Text color="#fff" opacity={0.9} style={{ marginBottom: 24 }}>
+          O pedido já entrou na fila de produção!
+        </Text>
+        <OkButton onPress={onOk}>
+          <Text color="#d73035" weight="600">
+            OK
+          </Text>
+        </OkButton>
+      </Container>
     </Modal>
   );
 };
