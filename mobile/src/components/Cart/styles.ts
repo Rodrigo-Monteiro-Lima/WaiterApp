@@ -27,7 +27,9 @@ export const QuantityContainer = styled.View`
   margin-left: 12px;
 `;
 
-export const ProductDetails = styled.View``;
+export const ProductDetails = styled.View`
+  max-width: 150px;
+`;
 
 export const Summary = styled.View`
   flex-direction: row;
