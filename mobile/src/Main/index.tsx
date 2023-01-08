@@ -76,10 +76,13 @@ const Main = () => {
     });
   };
   useEffect(() => {
-    axios.get('http://192.168.1.7:3001/categories')
-      .then(({data}) => setCategories(data));
-    axios.get('http:/192.168.1.7:3001/products')
-      .then(({data}) => setProducts(data));
+    Promise.all([
+      axios.get('http://192.168.1.7:3001/categories'),
+      axios.get('http:/192.168.1.7:3001/products'),
+    ]).then(([categoriesRes, productsRes]) => {
+      setCategories(categoriesRes.data);
+      setProducts(productsRes.data);
+    }).finally(() => setIsLoading(false));
   }, []);
 
   return (
