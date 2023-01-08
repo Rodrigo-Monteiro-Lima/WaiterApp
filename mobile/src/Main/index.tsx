@@ -5,6 +5,7 @@ import Categories from '../components/Categories';
 import Header from '../components/Header';
 import Menu from '../components/Menu';
 import TableModal from '../components/TableModal';
+import { CartItem } from '../types/CartItem';
 import {
   Container,
   CategoriesContainer,
@@ -17,6 +18,7 @@ import {
 const Main = () => {
   const [isTableModalVisible, setIsTableModalVisible] = useState(false);
   const [selectedTable, setSelectedTable] = useState('');
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const handleSaveTable = (table: string) => {
     setSelectedTable(table);
     setIsTableModalVisible(false);
@@ -42,7 +44,7 @@ const Main = () => {
       <Footer>
         <FooterContainer>
           {!selectedTable && <Button onPress={() => setIsTableModalVisible(true) }>Novo Pedido</Button>}
-          {selectedTable && <Cart />}
+          {selectedTable && <Cart cartItems={cartItems} />}
         </FooterContainer>
       </Footer>
       <TableModal visible={isTableModalVisible} onClose={() => setIsTableModalVisible(false)} onSave={handleSaveTable}/>
