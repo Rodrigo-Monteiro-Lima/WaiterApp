@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ActivityIndicator } from 'react-native';
 import Button from '../components/Button';
 import Cart from '../components/Cart';
@@ -19,13 +19,14 @@ import {
 import { Empty } from '../components/Icons/Empty';
 import { Text } from '../components/Text';
 import { Category } from '../types/Category';
+import axios from 'axios';
 
 const Main = () => {
   const [isTableModalVisible, setIsTableModalVisible] = useState(false);
   const [selectedTable, setSelectedTable] = useState('');
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [products, setProducts] = useState<Product[]>(mockProducts);
+  const [isLoading, setIsLoading] = useState(false);
+  const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const handleSaveTable = (table: string) => {
     setSelectedTable(table);
@@ -74,6 +75,10 @@ const Main = () => {
       return newCartItems;
     });
   };
+  useEffect(() => {
+    axios.get('http://192.168.1.7:3001/categories')
+      .then((res) => setCategories(res.data));
+  }, []);
 
   return (
     <>
