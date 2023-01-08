@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { FlatList, TouchableOpacity } from 'react-native';
 import { CartItem } from '../../types/CartItem';
 import { Product } from '../../types/Product';
+import { baseURL } from '../../utils/api';
 import { formatCurrency } from '../../utils/formatCurrency';
 import Button from '../Button';
 import { MinusCircle } from '../Icons/MinusCircle';
@@ -44,7 +45,7 @@ const Cart = ({ cartItems, onAdd, onDecrement, onConfirmOrder }: CartProps) => {
               <ProductContainer>
                 <Image
                   source={{
-                    uri: `http://dvvxp70.anonymous.19000.exp.direct:3390/uploads/${cartItem.product.imagePath}`,
+                    uri: `${baseURL}/uploads/${cartItem.product.imagePath}`,
                   }}
                 />
                 <QuantityContainer>
