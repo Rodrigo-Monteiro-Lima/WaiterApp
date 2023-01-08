@@ -9,11 +9,17 @@ import {ProductContainer, ProductImage, ProductDetails, Separator, AddToCartButt
 
 const Menu = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const handleOpenModal = (product) => {
+    setIsModalVisible(true);
+    setSelectedProduct(product);
+  };
   return (
     <>
       <ProductModal
         visible={isModalVisible}
         onClose={() => setIsModalVisible(false)}
+        product={selectedProduct}
       />
       <FlatList
         data={products}
@@ -22,7 +28,7 @@ const Menu = () => {
         keyExtractor={(products) => products._id}
         ItemSeparatorComponent={Separator}
         renderItem={({ item: product }) => (
-          <ProductContainer onPress={() => setIsModalVisible(true)}>
+          <ProductContainer onPress={() => handleOpenModal(product)}>
             <ProductImage
               source={{
                 uri: `http://192.168.1.7:3001/uploads/${product.imagePath}`,
