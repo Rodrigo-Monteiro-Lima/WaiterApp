@@ -26,6 +26,7 @@ const Main = () => {
   };
   const handleCancelOrder = () => {
     setSelectedTable('');
+    setCartItems([]);
   };
   const handleAddToCart = (product: Product) => {
     if (!selectedTable) setIsTableModalVisible(true);
@@ -82,16 +83,16 @@ const Main = () => {
         </MenuContainer>
       </Container>
       <Footer>
-        <FooterContainer>
-          {!selectedTable && <Button onPress={() => setIsTableModalVisible(true) }>Novo Pedido</Button>}
-          {selectedTable && (
-            <Cart
-              cartItems={cartItems}
-              onAdd={handleAddToCart}
-              onDecrement={handleDecrementCartItem}
-            />
-          )}
-        </FooterContainer>
+        {/* <FooterContainer> */}
+        {!selectedTable && <Button onPress={() => setIsTableModalVisible(true) }>Novo Pedido</Button>}
+        {selectedTable && (
+          <Cart
+            cartItems={cartItems}
+            onAdd={handleAddToCart}
+            onDecrement={handleDecrementCartItem}
+          />
+        )}
+        {/* </FooterContainer> */}
       </Footer>
       <TableModal visible={isTableModalVisible} onClose={() => setIsTableModalVisible(false)} onSave={handleSaveTable}/>
     </>
