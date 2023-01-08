@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Order } from '../../types/Order';
+import { api } from '../../utils/api';
 import OrderModal from '../OrderModal';
 import {Board, OrdersContainer} from './styles';
 
@@ -30,6 +31,10 @@ const OrdersBoard = ({icon, title, orders}: OrderBoardProps) => {
 
   const handleCancelOrder = async () => {
     setIsLoading(true);
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await api.delete(`/orders/${selectedOrder?._id}`);
+    setIsLoading(false);
+    setIsModalVisible(false);
   };
 
   return (

@@ -58,7 +58,7 @@ const OrderModal = ({visible, order, onClose, onCancelOrder, isLoading, onChange
             {order.products.map(({ _id, product, quantity }) => (
               <div className="item" key={_id}>
                 <img
-                  src={`http://localhost:3390/uploads/${product.imagePath}`}
+                  src={`http://localhost:3001/uploads/${product.imagePath}`}
                   alt={product.name}
                   width="56"
                   height="28.51"
