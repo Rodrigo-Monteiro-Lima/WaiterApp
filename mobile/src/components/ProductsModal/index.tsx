@@ -10,10 +10,15 @@ interface ProductModalPorps {
   visible: boolean;
   onClose: () => void;
   product: null | Product;
+  onAddToCart: (product: Product) => void;
 }
 
-const ProductModal = ({ visible, onClose, product }: ProductModalPorps) => {
+const ProductModal = ({ visible, onClose, product, onAddToCart }: ProductModalPorps) => {
   if (!product) return null;
+  const handleAddToCart = () => {
+    onAddToCart(product!);
+    onClose;
+  };
   return (
     <Modal
       visible={visible}
@@ -70,7 +75,7 @@ const ProductModal = ({ visible, onClose, product }: ProductModalPorps) => {
           </Text>
         </FooterContainer>
 
-        <Button onPress={() => alert('Adicionado')}>Adicionar Pedido</Button>
+        <Button onPress={handleAddToCart}>Adicionar Pedido</Button>
       </Footer>
     </Modal>
   );

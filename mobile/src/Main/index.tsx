@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import Menu from '../components/Menu';
 import TableModal from '../components/TableModal';
 import { CartItem } from '../types/CartItem';
+import { Product } from '../types/Product';
 import {
   Container,
   CategoriesContainer,
@@ -26,6 +27,27 @@ const Main = () => {
   const handleCancelOrder = () => {
     setSelectedTable('');
   };
+  const handleAddToCart = (product: Product) => {
+    if (!selectedTable) setIsTableModalVisible(true);
+    setCartItems((prevState) => {
+      const itemIndex = prevState.findIndex(
+        (cartItem) => cartItem.product._id === product._id
+      );
+      if (itemIndex < 0) {
+        return prevState.concat({
+          quantity: 1,
+          product,
+        });
+      }
+      const newCartItem = [...prevState];
+      const item = newCartItem[itemIndex];
+      newCartItem[itemIndex] = {
+        ...item,
+        quantity: item.quantity + 1,
+      };
+      return newCartItem;
+    });
+  };
 
   return (
     <>
@@ -38,7 +60,7 @@ const Main = () => {
           <Categories />
         </CategoriesContainer>
         <MenuContainer>
-          <Menu />
+          <Menu onAddToCart={handleAddToCart}/>
         </MenuContainer>
       </Container>
       <Footer>

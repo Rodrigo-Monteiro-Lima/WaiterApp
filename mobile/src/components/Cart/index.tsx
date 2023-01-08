@@ -17,46 +17,48 @@ const Cart = ({cartItems}: CartProps) => {
   }, 0);
   return (
     <>
-      <FlatList
-        data={cartItems}
-        keyExtractor={(cartItem) => cartItem.product._id}
-        showsVerticalScrollIndicator={false}
-        style={{ marginBottom: 20, maxHeight: 150 }}
-        renderItem={({ item: cartItem }) => (
-          <Item>
-            <ProductContainer>
-              <Image
-                source={{
-                  uri: `http://dvvxp70.anonymous.19000.exp.direct:3390/uploads/${cartItem.product.imagePath}`,
-                }}
-              />
-              <QuantityContainer>
-                <Text size={14} color="#666">
-                  {cartItem.quantity}x
-                </Text>
-              </QuantityContainer>
-              <ProductDetails>
-                <Text size={14} weight="600" style={{ marginBottom: 4 }}>
-                  {cartItem.product.name}
-                </Text>
-                <Text size={14} color="#666">
-                  {formatCurrency(cartItem.product.price)}
-                </Text>
-              </ProductDetails>
-            </ProductContainer>
-            <Actions>
-              <TouchableOpacity
-                style={{ marginRight: 24 }}
-              >
-                <MinusCircle />
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <PlusCircle />
-              </TouchableOpacity>
-            </Actions>
-          </Item>
-        )}
-      />
+      {cartItems.length > 0 && (
+        <FlatList
+          data={cartItems}
+          keyExtractor={(cartItem) => cartItem.product._id}
+          showsVerticalScrollIndicator={false}
+          style={{ marginBottom: 20, maxHeight: 150 }}
+          renderItem={({ item: cartItem }) => (
+            <Item>
+              <ProductContainer>
+                <Image
+                  source={{
+                    uri: `http://dvvxp70.anonymous.19000.exp.direct:3390/uploads/${cartItem.product.imagePath}`,
+                  }}
+                />
+                <QuantityContainer>
+                  <Text size={14} color="#666">
+                    {cartItem.quantity}x
+                  </Text>
+                </QuantityContainer>
+                <ProductDetails>
+                  <Text size={14} weight="600" style={{ marginBottom: 4 }}>
+                    {cartItem.product.name}
+                  </Text>
+                  <Text size={14} color="#666">
+                    {formatCurrency(cartItem.product.price)}
+                  </Text>
+                </ProductDetails>
+              </ProductContainer>
+              <Actions>
+                <TouchableOpacity
+                  style={{ marginRight: 24 }}
+                >
+                  <MinusCircle />
+                </TouchableOpacity>
+                <TouchableOpacity>
+                  <PlusCircle />
+                </TouchableOpacity>
+              </Actions>
+            </Item>
+          )}
+        />
+      )}
       <Summary>
         <TotalContainer>
           {cartItems.length > 0 ? (
