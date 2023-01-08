@@ -1,23 +1,37 @@
+import { useEffect, useState } from 'react';
+import { Order } from '../../types/Order';
+import { api } from '../../utils/api';
 import OrdersBoard from '../OrdersBoard';
 import { Container } from './styles';
 
 const Orders = () => {
+  const [orders, setOrders] = useState<Order[]>([]);
+  useEffect(() => {
+    api.get('/orders').then(({ data }) => {
+      setOrders(data);
+    });
+  }, []);
+  const waiting = orders.filter((order) => order.status === 'WAITING');
+  const inProduction = orders.filter(
+    (order) => order.status === 'IN_PRODUCTION'
+  );
+  const done = orders.filter((order) => order.status === 'DONE');
   return (
     <Container>
       <OrdersBoard
         icon="🕑"
         title="Fila de espera"
-        orders={[{table: '1', status: 'WAITING', _id: '123', products: []}]}
+        orders={waiting}
       />
       <OrdersBoard
         icon="👨‍🍳"
         title="Em preparação"
-        orders={[]}
+        orders={inProduction}
       />
       <OrdersBoard
         icon="✅"
         title="Pronto !"
-        orders={[]}
+        orders={done}
       />
     </Container>
   );
