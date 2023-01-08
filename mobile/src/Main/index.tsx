@@ -25,7 +25,7 @@ const Main = () => {
   const [isTableModalVisible, setIsTableModalVisible] = useState(false);
   const [selectedTable, setSelectedTable] = useState('');
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const handleSaveTable = (table: string) => {
@@ -77,7 +77,9 @@ const Main = () => {
   };
   useEffect(() => {
     axios.get('http://192.168.1.7:3001/categories')
-      .then((res) => setCategories(res.data));
+      .then(({data}) => setCategories(data));
+    axios.get('http:/192.168.1.7:3001/products')
+      .then(({data}) => setProducts(data));
   }, []);
 
   return (
