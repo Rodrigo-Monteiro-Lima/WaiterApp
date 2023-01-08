@@ -122,7 +122,7 @@ const Main = () => {
               </CenteredContainer>
             ): (
               <>
-                {products.length > 0  ?(
+                {products.length > 0  ? (
                   <MenuContainer>
                     <Menu onAddToCart={handleAddToCart} products={products}/>
                   </MenuContainer>)
@@ -140,18 +140,18 @@ const Main = () => {
         )}
       </Container>
       <Footer>
-        {/* <FooterContainer> */}
-        {!selectedTable && <Button onPress={() => setIsTableModalVisible(true) } disabled={isLoading}>Novo Pedido</Button>}
-        {selectedTable && (
-          <Cart
-            cartItems={cartItems}
-            onAdd={handleAddToCart}
-            onDecrement={handleDecrementCartItem}
-            onConfirmOrder={handleResetOrder}
-            selectedTable={selectedTable}
-          />
-        )}
-        {/* </FooterContainer> */}
+        <FooterContainer>
+          {!selectedTable && <Button onPress={() => setIsTableModalVisible(true) } disabled={isLoading}>Novo Pedido</Button>}
+          {selectedTable && (
+            <Cart
+              cartItems={cartItems}
+              onAdd={handleAddToCart}
+              onDecrement={handleDecrementCartItem}
+              onConfirmOrder={handleResetOrder}
+              selectedTable={selectedTable}
+            />
+          )}
+        </FooterContainer>
       </Footer>
       <TableModal visible={isTableModalVisible} onClose={() => setIsTableModalVisible(false)} onSave={handleSaveTable}/>
     </>
