@@ -28,7 +28,7 @@ const Main = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
-  const [isLoadingProducts, setIsLoadingProducts] = useState(true);
+  const [isLoadingProducts, setIsLoadingProducts] = useState(false);
   const handleSaveTable = (table: string) => {
     setSelectedTable(table);
     setIsTableModalVisible(false);
@@ -95,7 +95,6 @@ const Main = () => {
     setIsLoadingProducts(false);
   };
 
-
   return (
     <>
       <Container>
@@ -106,7 +105,7 @@ const Main = () => {
         {isLoading ? (
           <>
             <CenteredContainer>
-              <ActivityIndicator color="#D73035" size={200} animating={true} />
+              <ActivityIndicator color="#D73035" size="large" animating={true} />
             </CenteredContainer>
           </>
         ) : (
@@ -117,18 +116,26 @@ const Main = () => {
                 onSelectCategory={handleSelectCategory}
               />
             </CategoriesContainer>
-            {products.length > 0  ?(
-              <MenuContainer>
-                <Menu onAddToCart={handleAddToCart} products={products}/>
-              </MenuContainer>)
-              : (
-                <CenteredContainer>
-                  <Empty />
-                  <Text color="#666" style={{ marginTop: 24 }}>
+            {isLoadingProducts ? (
+              <CenteredContainer>
+                <ActivityIndicator color="#D73035" size="large" animating={true} />
+              </CenteredContainer>
+            ): (
+              <>
+                {products.length > 0  ?(
+                  <MenuContainer>
+                    <Menu onAddToCart={handleAddToCart} products={products}/>
+                  </MenuContainer>)
+                  : (
+                    <CenteredContainer>
+                      <Empty />
+                      <Text color="#666" style={{ marginTop: 24 }}>
                       Nenhum produto foi encontrado!
-                  </Text>
-                </CenteredContainer>
-              )}
+                      </Text>
+                    </CenteredContainer>
+                  )}
+              </>
+            )}
           </>
         )}
       </Container>
