@@ -1,10 +1,9 @@
-import { categories } from '../../mocks/categories';
 import { Text } from '../Text';
 import { CategoryContainer, Icon } from './styles';
 import { FlatList } from 'react-native';
 import { useState } from 'react';
 
-const Categories = () => {
+const Categories = ({ categories }) => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const handleSelectCategory = (categoryId: string) => {
     const category = selectedCategory === categoryId ? '' : categoryId;
