@@ -16,16 +16,17 @@ import {
   FooterContainer,
   CenteredContainer,
 } from './styles';
-import { products as mockProducts } from '../mocks/products';
 import { Empty } from '../components/Icons/Empty';
 import { Text } from '../components/Text';
+import { Category } from '../types/Category';
 
 const Main = () => {
   const [isTableModalVisible, setIsTableModalVisible] = useState(false);
   const [selectedTable, setSelectedTable] = useState('');
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [products] = useState<Product[]>(mockProducts);
+  const [products, setProducts] = useState<Product[]>(mockProducts);
+  const [categories, setCategories] = useState<Category[]>([]);
   const handleSaveTable = (table: string) => {
     setSelectedTable(table);
     setIsTableModalVisible(false);
@@ -90,7 +91,7 @@ const Main = () => {
         ) : (
           <>
             <CategoriesContainer>
-              <Categories />
+              <Categories categories={categories}/>
             </CategoriesContainer>
             {products.length > 0  ?(
               <MenuContainer>

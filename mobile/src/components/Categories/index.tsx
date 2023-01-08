@@ -2,8 +2,13 @@ import { Text } from '../Text';
 import { CategoryContainer, Icon } from './styles';
 import { FlatList } from 'react-native';
 import { useState } from 'react';
+import { Category } from '../../types/Category';
 
-const Categories = ({ categories }) => {
+interface CategoriesProps {
+  categories: Category[];
+}
+
+const Categories = ({ categories }: CategoriesProps) => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const handleSelectCategory = (categoryId: string) => {
     const category = selectedCategory === categoryId ? '' : categoryId;
