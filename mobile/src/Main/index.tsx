@@ -19,7 +19,7 @@ import {
 import { Empty } from '../components/Icons/Empty';
 import { Text } from '../components/Text';
 import { Category } from '../types/Category';
-import axios from 'axios';
+import { api } from '../utils/api';
 
 const Main = () => {
   const [isTableModalVisible, setIsTableModalVisible] = useState(false);
@@ -77,8 +77,8 @@ const Main = () => {
   };
   useEffect(() => {
     Promise.all([
-      axios.get('http://192.168.1.7:3001/categories'),
-      axios.get('http:/192.168.1.7:3001/products'),
+      api.get('/categories'),
+      api.get('/products'),
     ]).then(([categoriesRes, productsRes]) => {
       setCategories(categoriesRes.data);
       setProducts(productsRes.data);
