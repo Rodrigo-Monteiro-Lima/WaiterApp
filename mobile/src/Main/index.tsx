@@ -28,6 +28,7 @@ const Main = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
+  const [isLoadingProducts, setIsLoadingProducts] = useState(true);
   const handleSaveTable = (table: string) => {
     setSelectedTable(table);
     setIsTableModalVisible(false);
@@ -84,6 +85,16 @@ const Main = () => {
       setProducts(productsRes.data);
     }).finally(() => setIsLoading(false));
   }, []);
+  const handleSelectCategory = async (categoryId: string) => {
+    const route = !categoryId
+      ? '/products'
+      : `/categories/${categoryId}/products`;
+    setIsLoadingProducts(true);
+    const { data } = await api.get(route);
+    setProducts(data);
+    setIsLoadingProducts(false);
+  };
+
 
   return (
     <>
@@ -101,7 +112,10 @@ const Main = () => {
         ) : (
           <>
             <CategoriesContainer>
-              <Categories categories={categories}/>
+              <Categories
+                categories={categories}
+                onSelectCategory={handleSelectCategory}
+              />
             </CategoriesContainer>
             {products.length > 0  ?(
               <MenuContainer>
