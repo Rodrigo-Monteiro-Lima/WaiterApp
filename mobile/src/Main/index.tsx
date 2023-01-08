@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Button from '../components/Button';
+import Cart from '../components/Cart';
 import Categories from '../components/Categories';
 import Header from '../components/Header';
 import Menu from '../components/Menu';
@@ -41,6 +42,7 @@ const Main = () => {
       <Footer>
         <FooterContainer>
           {!selectedTable && <Button onPress={() => setIsTableModalVisible(true) }>Novo Pedido</Button>}
+          {selectedTable && <Cart />}
         </FooterContainer>
       </Footer>
       <TableModal visible={isTableModalVisible} onClose={() => setIsTableModalVisible(false)} onSave={handleSaveTable}/>
